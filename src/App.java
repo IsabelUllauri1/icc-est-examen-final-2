@@ -1,7 +1,5 @@
 import java.util.Arrays;
 import java.util.List;
-import java.util.Set;
-import java.util.Stack;
 
 import controllers.MaquinaController;
 import models.Maquina;
@@ -67,5 +65,31 @@ public class App {
                 new Maquina("DB13", "71.248.50.86", Arrays.asList(17, 11, 12)));
         return maquinas;
 
+        MaquinaController controller = new MaquinaController();
+        
+        System.out.println("metodo A");
+        Stack<Maquina> sta= controller.filtrarPorSubred(maquinas, 150);
+        imprimir(sta);
+
+        System.out.println("metodo B");
+        Set<Maquina> orden = controller.ordenarPorSubred(sta);
+        imprimir(orden);
+
+        System.out.println("metodo C");
+        Map<Integer, Queue<Maquina>> mapa = controller.agruparPorRiesgo(maquinas);
+        imprimir(maquinas);
+
+
+
+
+
+        
+
     }
+    private static  void imprimir (Iterable<Maquina> it){
+            for(Maquina m: it){
+                System.out.println(m);
+            }
+            
+        }
 }
